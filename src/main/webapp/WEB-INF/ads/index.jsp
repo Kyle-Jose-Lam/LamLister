@@ -16,10 +16,10 @@
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
+            <form method="post" action="/da">
+                <button type="submit" name="button" value="${ad.id}">View Ad</button>
+            </form>
         </div>
-        <form method="/post" action="/da">
-            <button type="submit" name="button" value="${ad.id}">View Ad</button>
-        </form>
     </c:forEach>
 </div>
 
