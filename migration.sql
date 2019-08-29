@@ -52,6 +52,12 @@ VALUES ('Appliances'),
        ('Tools'),
        ('Toys');
 
+insert into ads(title, description, user_id)
+Values ('old bed', 'old bed i never slept in', 1,
+       ( '2015 mustang gt', 'awesome car my ex totally didn''t destroy', 1),
+       ('xbox', 'my video games', 1),
+       ('shiny toy gun', 'a toy i never used growing up', 1);
+
 # CREATE TABLE profile (
 #      id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 #      profile_id INT UNSIGNED NOT NULL,
