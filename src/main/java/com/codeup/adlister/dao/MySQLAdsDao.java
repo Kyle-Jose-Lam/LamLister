@@ -71,4 +71,17 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
+
+    public Ad showAd (long id){
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement("SELECT * FROM ads WHERE id = ?");
+            statement.setLong(1, id);
+            ResultSet rs = statement.executeQuery();
+            rs.next();
+            return extractAd(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("error loading ad",e);
+        }
+    }
 }
