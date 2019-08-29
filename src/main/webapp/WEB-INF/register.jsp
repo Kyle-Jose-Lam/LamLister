@@ -19,6 +19,14 @@
                 <input id="email" name="email" class="form-control" type="text">
             </div>
             <div class="form-group">
+                <label for="name">Full Name</label>
+                <input id="name" name="name" class="form-control" type="text">
+            </div>
+            <div class="form-group">
+                <label for="address">Address(Street,City,State,Zipcode)</label>
+                <input id="address" name="address" class="form-control" type="text">
+            </div>
+            <div class="form-group">
                 <label for="password">Password</label>
                 <input id="password" name="password" class="form-control" type="password">
             </div>
@@ -26,6 +34,7 @@
                 <label for="confirm_password">Confirm Password</label>
                 <input id="confirm_password" name="confirm_password" class="form-control" type="password">
             </div>
+
             <input type="submit" class="btn btn-primary btn-block">
         </form>
     </div>

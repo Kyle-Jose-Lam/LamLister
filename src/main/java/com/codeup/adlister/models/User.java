@@ -7,20 +7,27 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String full_name;
+    private String address;
 
     public User() {}
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, String name, String address) {
         this.username = username;
         this.email = email;
         setPassword(password);
+        this.password = password;
+        this.full_name = name;
+        this.address = address;
     }
 
-    public User(long id, String username, String email, String password) {
+    public User(long id, String username, String email, String password, String name, String address) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.full_name = name;
+        this.address = address;
     }
 
     public long getId() {
@@ -54,4 +61,12 @@ public class User {
     public void setPassword(String password) {
         this.password = Password.hash(password);
     }
+
+    public String getFull_name() { return full_name; }
+
+    public void setFull_name(String full_name) { this.full_name = full_name; }
+
+    public String getAddress() { return address; }
+
+    public void setAddress(String address) { this.address = address; }
 }
