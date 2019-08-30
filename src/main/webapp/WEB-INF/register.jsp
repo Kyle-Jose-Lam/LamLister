@@ -12,19 +12,19 @@
         <form action="/register" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input id="username" name="username" class="form-control" type="text">
+                <input id="username" name="username" class="form-control" type="text" value="${sessionScope.failed.username}">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" name="email" class="form-control" type="text">
+                <input id="email" name="email" class="form-control" type="text" value="${sessionScope.failed.email}">
             </div>
             <div class="form-group">
                 <label for="name">Full Name</label>
-                <input id="name" name="name" class="form-control" type="text">
+                <input id="name" name="name" class="form-control" type="text" value="${sessionScope.failed.full_name}">
             </div>
             <div class="form-group">
                 <label for="address">Address(Street,City,State,Zipcode)</label>
-                <input id="address" name="address" class="form-control" type="text">
+                <input id="address" name="address" class="form-control" type="text" value="${sessionScope.failed.address}">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>

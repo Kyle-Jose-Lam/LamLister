@@ -29,6 +29,12 @@ public class User {
         this.full_name = name;
         this.address = address;
     }
+    public User(String username, String email, String name, String address) {
+        this.username = username;
+        this.email = email;
+        this.full_name = name;
+        this.address = address;
+    }
 
     public long getId() {
         return id;
