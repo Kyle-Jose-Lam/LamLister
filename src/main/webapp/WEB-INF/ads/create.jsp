@@ -12,7 +12,7 @@
         <form action="/ads/create" method="post">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input id="title" name="title" class="form-control" type="text" value="${sessionScop    e.failed.title}">
+                <input id="title" name="title" class="form-control" type="text" value="${sessionScope.failed.title}">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>

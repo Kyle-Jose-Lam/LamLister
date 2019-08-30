@@ -15,9 +15,7 @@ import java.io.IOException;
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User userCache =(User) request.getSession().getAttribute("failed");
-//        if(userCache != null) {
-//            response.s
-//        }
+
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
 
     }
@@ -37,16 +35,43 @@ public class RegisterServlet extends HttpServlet {
             || name.isEmpty()
             || address.isEmpty()
             || password.isEmpty()
-            || (! password.equals(passwordConfirmation));
+            || (! password.equals(passwordConfirmation))
+            || (DaoFactory.getUsersDao().findByUsername(username) != null);
 
         if (inputHasErrors) {
+            String error = "Please make sure the following forms are properly filled out: ";
+            if(username.isEmpty()){
+                error += "Username, ";
+            }
+            if(email.isEmpty()){
+                error += "Email, ";
+            }
+            if(name.isEmpty()){
+                error += "Full name, ";
+            }
+            if(address.isEmpty()){
+                error += "Address, ";
+            }
+            if(password.isEmpty()){
+                error += "Password, ";
+            }
+            error = error.substring(0,error.length()-2)+".";
+            if(! password.equals(passwordConfirmation)){
+                error += "<br>Passwords do not match.";
+            }
+            if(DaoFactory.getUsersDao().findByUsername(username) != null){
+                error += "<br>Username is already taken.";
+                username = null;
+            }
             User user = new User(username, email, name, address);
             request.getSession().setAttribute("failed",user);
+            request.getSession().setAttribute("error",error);
             response.sendRedirect("/register");
             return;
         }
         String hash = BCrypt.hashpw(password, BCrypt.gensalt());
         // create and save a new user
+        request.getSession().setAttribute("failed", null);
         User user = new User(username, email, hash, name, address);
         DaoFactory.getUsersDao().insert(user);
         response.sendRedirect("/login");
