@@ -14,7 +14,12 @@ import java.io.IOException;
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User userCache =(User) request.getSession().getAttribute("failed");
+//        if(userCache != null) {
+//            response.s
+//        }
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -35,11 +40,12 @@ public class RegisterServlet extends HttpServlet {
             || (! password.equals(passwordConfirmation));
 
         if (inputHasErrors) {
+            User user = new User(username, email, name, address);
+            request.getSession().setAttribute("failed",user);
             response.sendRedirect("/register");
             return;
         }
         String hash = BCrypt.hashpw(password, BCrypt.gensalt());
-
         // create and save a new user
         User user = new User(username, email, hash, name, address);
         DaoFactory.getUsersDao().insert(user);
