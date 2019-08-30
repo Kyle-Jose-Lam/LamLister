@@ -54,7 +54,7 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public User findUserByAdId(int adId) {
+    public User findUserByAdId(long adId) {
         return null;
     }
 

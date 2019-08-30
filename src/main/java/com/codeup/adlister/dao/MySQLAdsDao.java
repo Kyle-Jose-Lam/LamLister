@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 import java.io.FileInputStream;
@@ -26,6 +27,17 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    public List<Ad> findAdsByUser(User user) {
+        String query = "SELECT * FROM ads WHERE user_id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, (int)user.getId());
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a user by username", e);
+        }
+    }
     @Override
     public List<Ad> all() {
         PreparedStatement stmt = null;
@@ -60,6 +72,7 @@ public class MySQLAdsDao implements Ads {
         return null;
     }
 
+
     @Override
     public List<Ad> findbyid(int id) {
         return null;
@@ -75,6 +88,7 @@ public class MySQLAdsDao implements Ads {
         }
 
     }
+
 
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
@@ -105,4 +119,6 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("error loading ad",e);
         }
     }
+
+
 }
