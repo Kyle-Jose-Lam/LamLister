@@ -53,6 +53,11 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+    @Override
+    public User findUserByAdId(int adId) {
+        return null;
+    }
+
     private User extractUser(ResultSet rs) throws SQLException {
         if (! rs.next()) {
             return null;
