@@ -69,6 +69,23 @@ Values ('old bed', 'old bed i never slept in', 1),
        ('Buzz lightyear action figure','old but new', 3),
        ('Gucci Jacket','new but old', 3);
 
+insert into cat_ads(ad_id, category_id)
+values (1,5),
+       (1,2),
+       (1,4),
+       (1,9),
+       (1,7),
+       (2,6),
+       (2,5),
+       (2,2),
+       (2,4),
+       (2,6),
+       (3,6),
+       (3,7),
+       (3,2),
+       (3,8),
+       (3,3);
+
 
 
 # CREATE TABLE profile (
@@ -82,3 +99,5 @@ Values ('old bed', 'old bed i never slept in', 1),
 
 
 select * from ads;
+
+select * from cat_ads;
