@@ -15,5 +15,20 @@ public class DeleteAdsDao implements Ads{
         return null;
     }
 
+    @Override
+    public List<Ad> da(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Ad> findbyid(int id) {
+        return null;
+    }
+
+    @Override
+    public void deleteAd(int id) {
+
+    }
+
 }
 
