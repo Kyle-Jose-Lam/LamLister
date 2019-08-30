@@ -56,7 +56,20 @@ insert into ads(title, description, user_id)
 Values ('old bed', 'old bed i never slept in', 1),
        ( '2015 mustang gt', 'awesome car my ex totally didn''t destroy', 1),
        ('xbox', 'my video games', 1),
-       ('shiny toy gun', 'a toy i never used growing up', 1);
+       ('shiny toy gun', 'a toy i never used growing up', 1),
+       ('Gold chain','14K cuban link for the low', 1),
+       ('Chainsaw','prop from texas chainsaw massacre', 2),
+       ('L desk','old but still works like a champ', 2),
+       ('2012 fiat','works good but no AC', 2),
+       ('24inch BenQ Monitor','almost brand new, 1080p 60hz', 2),
+       ('glass martini set','got it for my birthday but never used it', 2),
+       ('Dog cage for sale','no rust and big enough for two dogs', 3),
+       ('Wedding ring','white gold with a vvs1 caret diamond', 3),
+       ('2019 488 Pista Spider','500 miles with track pack. $500K', 3),
+       ('Buzz lightyear action figure','old but new', 3),
+       ('Gucci Jacket','new but old', 3);
+
+
 
 # CREATE TABLE profile (
 #      id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -68,3 +81,4 @@ Values ('old bed', 'old bed i never slept in', 1),
 # );
 
 
+select * from ads;

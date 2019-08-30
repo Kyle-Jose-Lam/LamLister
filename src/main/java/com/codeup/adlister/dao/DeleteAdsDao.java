@@ -4,7 +4,7 @@ import com.codeup.adlister.models.Ad;
 
 import java.util.List;
 
-public class DeleteAdsDao implements Ads{
+public abstract class DeleteAdsDao implements Ads{
     @Override
     public List<Ad> all() {
         return null;
