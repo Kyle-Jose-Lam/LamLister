@@ -12,16 +12,16 @@
     <div class="container">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
     </div>
-    <c:forEach var="ad" items="${ads}">
+    <c:forEach var="ad" items="${myads}">
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
-            <form method="post" action="/da">
-                <button type="submit" name="button" value="${ad.id}">View Ad</button>
+            <form method="post" action="/profile">
+                <button type="submit" name="button" value="${ad.id}">Edit${ad.id}</button>
             </form>
-            <form method="post" action="">
-                <button type="submit" name="button" value="${ad.id}">Delete Ad</button>
-            </form>
+<%--            <form method="post" action="">--%>
+<%--                <button type="submit" name="button" value="${ad.id}">Delete Ad</button>--%>
+<%--            </form>--%>
         </div>
     </c:forEach>
 </body>
