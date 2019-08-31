@@ -10,7 +10,7 @@ import java.io.IOException;
 public class DetailedAdDao {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("ads", DaoFactory.getAdsDao().da(1));
-        request.getRequestDispatcher("/WEB-INF/ads/DetailedAd.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/ads/seeMore.jsp").forward(request, response);
     }
 
 
@@ -24,7 +24,7 @@ public class DetailedAdDao {
         User user = DaoFactory.getUsersDao().findUserByAdId(adId);
         request.setAttribute("user", user);
 
-        request.getRequestDispatcher("/WEB-INF/ads/DetailedAd.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/ads/seeMore.jsp").forward(request, response);
 
     }
 }
