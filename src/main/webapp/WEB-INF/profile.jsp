@@ -7,6 +7,10 @@
     </jsp:include>
 </head>
 <body>
+<%--<c:url var="deleteLink" value="">--%>
+<%--    <c:param name="command" value="DELETE"/>--%>
+<%--    <c:param name="adId" value="${ad.id}"/>--%>
+<%--</c:url>--%>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
     <div class="container">
@@ -17,11 +21,11 @@
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
             <form method="post" action="/profile">
-                <button type="submit" name="button" value="${ad.id}">Edit${ad.id}</button>
+                <button type="submit" name="button" value="${ad.id}">Edit</button>
             </form>
-<%--            <form method="post" action="">--%>
-<%--                <button type="submit" name="button" value="${ad.id}">Delete Ad</button>--%>
-<%--            </form>--%>
+            <form method="post" action="">
+                <button type="submit" name="button2" value="${ad.id}">Delete</button>
+            </form>
         </div>
     </c:forEach>
 </body>

@@ -36,6 +36,10 @@ public class User {
         this.address = address;
     }
 
+    public User(long id, String username, String email, String password) {
+    }
+
+
     public long getId() {
         return id;
     }
