@@ -22,8 +22,9 @@ public class EditAdsServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("button"));
         User user = (User) request.getSession().getAttribute("user");
         Ad ad = new Ad(user.getId(),
-                request.getParameter("description"),
-                request.getParameter("address")
+                request.getParameter("title"),
+                request.getParameter("description")
+
         );
 
 
@@ -31,3 +32,4 @@ public class EditAdsServlet extends HttpServlet {
         response.sendRedirect("/ads");
     }
 }
+
