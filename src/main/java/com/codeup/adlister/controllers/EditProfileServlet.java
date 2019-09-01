@@ -15,7 +15,7 @@ public class EditProfileServlet  extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
         request.setAttribute("user", user);
-        request.getRequestDispatcher("/WEB-INF/updateProfile.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request,response);
 
     }
 
