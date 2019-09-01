@@ -1,6 +1,7 @@
 package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,13 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet( name = "controllers.DeleteAdServlet",urlPatterns = "/delete")
+@WebServlet(name = "controllers.DeleteAdServlet", urlPatterns = "/ads/delete")
 public class DeleteAdServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int deleteid = Integer.parseInt(request.getParameter("button2"));
-        request.setAttribute("ads", DaoFactory.getAdsDao().findbyid(deleteid));
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("ads", DaoFactory.getAdsDao().all());
+        request.getRequestDispatcher("/WEB-INF/ads/delete.jsp").forward(request, response);
+    }
 
-
-        response.sendRedirect("/profile");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("button2"));
+        DaoFactory.getAdsDao().deleteAd(id);
+        response.sendRedirect("/ads/delete");
     }
 }

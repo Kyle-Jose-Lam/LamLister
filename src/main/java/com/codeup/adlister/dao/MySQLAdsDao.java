@@ -35,7 +35,7 @@ public class MySQLAdsDao implements Ads {
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
-            throw new RuntimeException("Error finding a user by username", e);
+            throw new RuntimeException("Error finding a user", e);
         }
     }
     @Override
@@ -80,13 +80,14 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public void deleteAd(int id) {
-        try{
-            String sql = "Delete from ads where id = " + id;
-            PreparedStatement stmt = connection.prepareStatement(sql);
-        }catch(SQLException e){
-            throw new RuntimeException("failed to delete ad");
+        try {
+            String insertQuery = "DELETE FROM ads WHERE id = ?";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery);
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            throw new RuntimeException("Error deleting ad", e);
         }
-
     }
 
 
@@ -117,6 +118,20 @@ public class MySQLAdsDao implements Ads {
             return extractAd(rs);
         } catch (SQLException e) {
             throw new RuntimeException("error loading ad",e);
+        }
+    }
+
+    @Override
+    public void updateAds(Long id, String title, String description) {
+        try{
+            String query = "Update ads set title = ?, description = ? where id = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1,title);
+            ps.setString(2,description);
+            ps.setLong(3,id);
+            ps.executeUpdate();
+        }catch (SQLException e){
+            throw new RuntimeException("Not able to edit ad, e");
         }
     }
 
