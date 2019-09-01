@@ -3,29 +3,42 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Edit Ad"/>
+        <jsp:param name="title" value="Update Your Ad" />
     </jsp:include>
     <title></title></head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<h1>Update Your Ad</h1>
 <div class="container">
-    <h1>Edit the Ad</h1>
-<%--    <c:choose>--%>
-<%--        <c:when test="${failedAd}">--%>
-<%--            <h2 style="color:red"> Please Fill In All Forms</h2>--%>
-<%--        </c:when>--%>
-<%--    </c:choose>--%>
-    <form action="/edit" method="post">
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input id="title" name="new_title" class="form-control" type="text"/>
-        </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" name="new_description" class="form-control" type="text"></textarea>
-        </div>
-        <input type="submit" class="btn btn-block btn-primary">
-    </form>
+
+    <c:forEach var="ad" items="${myads}">
+        <c:choose>
+            <c:when test="${ad.name == sessionScope.username}">
+                <div class="col-md-6">
+                    <form action="/ads/update" method="post">
+                            <div class="card-body" style="padding-left: 5px">
+                                <h5 class="card-title" style="font-weight: bold; text-align: center; font-size: 1.5em;">${ad.title}</h5>
+                                <span style="font-weight: bold">Description: </span><span style="font-style: italic">${ad.description}<br></span>
+                            </div>
+
+                        <input type="hidden" name="id" value="${ad.id}">
+                        <input type="hidden" name="user_id" value="${ad.user_id}">
+
+                        <div>
+                            <label for="title">Title</label>
+                            <input id="title" name="title" class="form-control" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" class="form-control" type="text"></textarea>
+                        </div>
+
+                        <input type="hidden" name="ad_id" value="${ad.id}">
+                        <button id="update" type="submit" class="btn btn-block btn-primary">Edit</button>
+                </form>
+            </c:when>
+        </c:choose>
+    </c:forEach>
 </div>
 </body>
 </html>

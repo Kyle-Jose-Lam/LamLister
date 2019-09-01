@@ -6,16 +6,16 @@
 </head>
 <body>
 <div class="container form">
-    <h1>Update Profile</h1>
+    <h1>Update Profile Information</h1>
     <hr>
-    <form action="/updateUser" method="POST">
+    <form action="/updateProfile" method="POST">
         <div class="form-group">
             <label for="username">Username</label>
             <input id="username" name="username" class="form-control use" type="text" value="${user.username}">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input id="password" name="password" class="form-control use" type="password" placeholder="Enter Password">
+            <input id="password" name="password" class="form-control use" type="password" placeholder="Enter Your Current or New Password">
         </div>
         <div class="form-group">
             <label for="email">email</label>

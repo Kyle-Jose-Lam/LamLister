@@ -20,6 +20,6 @@ public class DeleteAdServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("button2"));
         DaoFactory.getAdsDao().deleteAd(id);
-        response.sendRedirect("/ads/delete");
+        response.sendRedirect("/profile");
     }
 }
