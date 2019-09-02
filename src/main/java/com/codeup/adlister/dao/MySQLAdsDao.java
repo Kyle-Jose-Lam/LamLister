@@ -121,29 +121,8 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+
     @Override
-    public void updateAd(Ad ad, int id) {
-
-    }
-
-
-    public List<Ad> updateAd(Ad ad, Long ad_id){
-        try {
-            String insertQuery = "UPDATE ads " + "SET title = ?, description = ?   WHERE id = ?";
-            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, ad.getTitle());
-            stmt.setString(2, ad.getDescription());
-            stmt.setLong(3, ad_id);
-            stmt.executeUpdate();
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next();
-            return createAdsFromResults(rs);
-        }catch(SQLException e){
-            throw new RuntimeException("Error updating ad", e);
-        }
-    }
-
-
     public void updateAds(Long id, String title, String description) {
         try{
             String query = "Update ads set title = ?, description = ? where id = ?";
@@ -153,9 +132,26 @@ public class MySQLAdsDao implements Ads {
             ps.setLong(3,id);
             ps.executeUpdate();
         }catch (SQLException e){
-            throw new RuntimeException("Not able to edit ad, e");
+            throw new RuntimeException("Unable to edit ad, e");
         }
     }
 
 
-}
+    @Override
+    public Ad findAdById(Long id) {
+        String query = "Select * from ads where id = ?";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return extractAd(rs);
+        }catch (SQLException e){
+            throw new RuntimeException("Error finding a ad by title", e);
+        }
+
+    }
+    }
+
+
+

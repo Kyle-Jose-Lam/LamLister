@@ -29,9 +29,9 @@ public class EditProfileServlet  extends HttpServlet {
                 user.getId(),
                 req.getParameter("username"),
                 req.getParameter("email"),
-                hashedPassword
-
+                req.getParameter("hashedPassword")
         );
+
         DaoFactory.getUsersDao().updateProfile(user);
         user.setUsername(updatedUser.getUsername());
         req.getRequestDispatcher("WEB-INF/login.jsp").forward(req, resp);

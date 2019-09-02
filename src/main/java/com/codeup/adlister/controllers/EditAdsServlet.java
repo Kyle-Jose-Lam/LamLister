@@ -2,7 +2,6 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
-import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,25 +10,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "controllers.UpdateAdServlet", urlPatterns = "/ads/update")
+@WebServlet(name = "controllers.UpdateAdServlet", urlPatterns = "/ads/updateAd")
 public class EditAdsServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("ads", DaoFactory.getAdsDao().all());
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("button"));
+        Ad ad = DaoFactory.getAdsDao().findAdById(id);
+        request.setAttribute("ad", ad);
+
+
+        if(request.getParameter("editedTitle") != null) {
+
+            String editedTitle = request.getParameter("editTitle");
+            String editedDescription = request.getParameter("description");
+            DaoFactory.getAdsDao().updateAds(id,editedTitle,editedDescription);
+            response.sendRedirect("/ads");
+            return;
+
+        }
+
         request.getRequestDispatcher("/WEB-INF/ads/editAd.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("button"));
-        User user = (User) request.getSession().getAttribute("user");
-        Ad ad = new Ad(user.getId(),
-                request.getParameter("title"),
-                request.getParameter("description")
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getSession().getAttribute("user") == null) {
+            response.sendRedirect("/login");
+            return;
+        }
 
-        );
+        request.getRequestDispatcher("/WEB-INF/ads/editAd.jsp").forward(request, response);
 
 
-        DaoFactory.getAdsDao().updateAd(ad, id);
-        response.sendRedirect("/ads");
     }
 }
+
 
