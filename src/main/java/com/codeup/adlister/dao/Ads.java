@@ -11,12 +11,12 @@ public interface Ads {
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
     List<Ad> da(int id);
-    List<Ad> findbyid(int id);
+    Ad findById(long id);
     List<Ad> findAdsByUser(User user);
     void deleteAd(int id);
 
     Ad showAd(long adId);
-
+    Ad findRecentAd(User user);
 
     void updateAd(Ad ad, int id);
 }

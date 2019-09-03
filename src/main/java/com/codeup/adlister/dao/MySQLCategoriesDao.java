@@ -50,5 +50,16 @@ public class MySQLCategoriesDao implements Categories {
 
         );
     }
+    public void insert(Category cat) {
+        String query = "INSERT INTO cat_ads(ad_id, category) VALUES (?, ?)";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, cat.getId());
+            stmt.setString(2, cat.getTitle());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating ad category", e);
+        }
+    }
 
 }
