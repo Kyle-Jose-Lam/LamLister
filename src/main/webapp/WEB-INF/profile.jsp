@@ -24,8 +24,9 @@
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
-            <form method="post" action="/ads/updateAd">
-                <button type="submit" name="button" value="${ad.id}">Edit</button>
+            <form method="get" action="/ads/updateAd">
+
+                <button type="submit" name="adId" value="${ad.id}">Edit</button>
             </form>
             <form method="post" action="/ads/delete">
                 <button type="submit" name="button2" value="${ad.id}">Delete</button>
