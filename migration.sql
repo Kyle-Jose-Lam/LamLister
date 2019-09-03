@@ -41,9 +41,9 @@ CREATE TABLE cat_ads (
 #         ON DELETE CASCADE
 );
 INSERT into users(username,email,password,full_name,address)
-Values ('Kyle','kyle@codeup.com','1','Kyle Maulsby', 'Somewhere Texas'),
-       ('Joey','joey@codeup.com','2','Joey Gonzalez','Somewhere Texas'),
-       ('Lam','lam@codeup.com','3','Lam Nguyen','Somewhere');
+Values ('Kyle','kyle@codeup.com','$2a$10$Np9uN3PKPI10iYO1Yv.de.vHgWaJ/VunlS.uAV9eD0d7A044Uj8V2','Kyle Maulsby', 'Somewhere Texas'),
+       ('aimbotic','joey@codeup.com','$2a$10$u5N9kGeAOSiqvFl9YdedC','Joey Gonzalez','Somewhere Texas'),
+       ('Lam','lam@codeup.com','$2a$10$mZuOLtJvrUWrJkvsgDr8Q.KYlnDRg3wclg6v703Xd78w3r.RrCoZi','Lam Nguyen','Somewhere');
 
 # INSERT INTO categories(category)
 # VALUES ('Appliances'),
@@ -57,7 +57,7 @@ Values ('Kyle','kyle@codeup.com','1','Kyle Maulsby', 'Somewhere Texas'),
 #        ('Toys');
 insert into ads(title, description, user_id)
 Values ('old bed', 'old bed i never slept in', 1),
-       ( '2015 mustang gt', 'awesome car my ex totally didn''t destroy', 1),
+       ('2015 mustang gt', 'awesome car my ex totally didn''t destroy', 1),
        ('xbox', 'my video games', 1),
        ('shiny toy gun', 'a toy i never used growing up', 1),
        ('Gold chain','14K cuban link for the low', 1),
