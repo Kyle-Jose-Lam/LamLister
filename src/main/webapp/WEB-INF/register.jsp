@@ -13,6 +13,29 @@
         <c:if test="${sessionScope.error != null}">
             <p style="color:red;font-weight:bold">${sessionScope.error}</p>
         </c:if>
+
+        <c:if  test="">
+
+            <form action="">
+                <input type="text">
+                <input type="text">
+                <button></button>
+            </form>
+
+
+        </c:if>
+        <c:if test="!=">
+
+            <h2>${ad.title}</h2>
+            <p>${ad.description}</p>
+            <form method="post" action="/da">
+                <button type="submit" name="button" value="${ad.id}">View Ad</button>
+            </form>
+
+
+        </c:if>
+
+
         <form action="/register" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
@@ -38,7 +61,6 @@
                 <label for="confirm_password">Confirm Password</label>
                 <input id="confirm_password" name="confirm_password" class="form-control" type="password">
             </div>
-
             <input type="submit" class="btn btn-primary btn-block">
         </form>
     </div>

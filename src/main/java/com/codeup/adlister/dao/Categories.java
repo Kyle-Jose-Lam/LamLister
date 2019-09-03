@@ -8,4 +8,5 @@ import java.util.List;
 public interface Categories {
 
     List<Category> all();
+    void insert(Category cat);
 }

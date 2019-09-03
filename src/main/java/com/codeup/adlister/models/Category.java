@@ -18,7 +18,7 @@ public class Category {
 
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
@@ -26,7 +26,7 @@ public class Category {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
