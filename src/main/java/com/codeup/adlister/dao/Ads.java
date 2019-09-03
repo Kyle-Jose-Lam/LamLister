@@ -16,7 +16,7 @@ public interface Ads {
     void deleteAd(int id);
 
     Ad showAd(long adId);
+    Ad findAdById(Long id);
     Ad findRecentAd(User user);
-
-    void updateAd(Ad ad, int id);
+    void updateAds(Long id, String editTitle, String editDescription);
 }

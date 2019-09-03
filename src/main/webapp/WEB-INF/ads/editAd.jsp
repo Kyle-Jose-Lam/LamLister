@@ -3,23 +3,24 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Update Your Ad" />
+        <jsp:param name="title" value="Update Ad" />
     </jsp:include>
     <title></title></head>
 <body>
-<div class="container form">
-    <h1>Update Profile Information</h1>
-    <hr>
-    <form action="/ads/update" method="POST">
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input id="title" name="title" class="form-control use" type="text" value="${ad.title}">
+<div class="card-body">
+    <h5 class="card-title text-center">Edit Ad</h5>
+    <form class="form-signin" action="/ads/updateAd" method="post">
+        <div class="form-label-group">
+            <input id="title" name="editedTitle" class="form-control" type="text" value="${ad.title}">
         </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <input id="description" name="password" class="form-control use" type="text" placeholder="New Description" value="${ad.description}">
+        <div class="form-label-group">
+            <textarea rows="8" id="description" name="description" class="form-control" type="text">${ad.description}</textarea>
         </div>
+        <input value="${ad.id}" name="editId" type="hidden">
+
+        <button type="submit">Edit</button>
     </form>
 </div>
+
 </body>
 </html>

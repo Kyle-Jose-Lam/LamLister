@@ -22,18 +22,19 @@ public class EditProfileServlet  extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("user");
 
-        String password = req.getParameter("password");
-        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        String username = req.getParameter("username");
+        String email = req.getParameter("email");
+//        String password = req.getParameter("password");
+//        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
         User updatedUser = new User(
-                user.getId(),
-                req.getParameter("username"),
-                req.getParameter("email"),
-                hashedPassword
-
+                username,
+                email,
+                user.getId()
         );
-        DaoFactory.getUsersDao().updateProfile(user);
+
+        DaoFactory.getUsersDao().updateProfile(updatedUser);
         user.setUsername(updatedUser.getUsername());
-        req.getRequestDispatcher("WEB-INF/login.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/profile.jsp").forward(req, resp);
     }
 }

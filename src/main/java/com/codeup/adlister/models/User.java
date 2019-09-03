@@ -39,6 +39,12 @@ public class User {
     public User(long id, String username, String email, String password) {
     }
 
+    public User(String username, String email, long id) {
+        this.username = username;
+        this.email = email;
+        this.id = id;
+    }
+
 
     public long getId() {
         return id;

@@ -14,9 +14,6 @@
 <div class="col-md-6">
     <h2>${ads.title}</h2>
     <p>${ads.description}</p>
-    <form method="post" action="/ads/delete">
-        <button type="submit" name="button" value="${ads.id}">Delete Ad</button>
-    </form>
 </div>
 </body>
 </html>
