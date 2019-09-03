@@ -26,32 +26,35 @@ CREATE TABLE ads (
         ON DELETE CASCADE
 );
 
-CREATE TABLE categories (
-     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-     category VARCHAR(100) NOT NULL,
-     PRIMARY KEY (id)
-);
+# CREATE TABLE categories (
+#      id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+#      category VARCHAR(100) NOT NULL,
+#      PRIMARY KEY (id)
+# );
 
 CREATE TABLE cat_ads (
      ad_id INT UNSIGNED NOT NULL,
-     category_id INT UNSIGNED NOT NULL,
+     category VARCHAR(150) NOT NULL,
      FOREIGN KEY (ad_id) REFERENCES ads(id)
-         ON DELETE CASCADE,
-     FOREIGN KEY (category_id) REFERENCES categories(id)
-        ON DELETE CASCADE
+         ON DELETE CASCADE
+#      FOREIGN KEY (category_id) REFERENCES categories(id)
+#         ON DELETE CASCADE
 );
+INSERT into users(username,email,password,full_name,address)
+Values ('Kyle','kyle@codeup.com','1','Kyle Maulsby', 'Somewhere Texas'),
+       ('Joey','joey@codeup.com','2','Joey Gonzalez','Somewhere Texas'),
+       ('Lam','lam@codeup.com','3','Lam Nguyen','Somewhere');
 
-INSERT INTO categories(category)
-VALUES ('Appliances'),
-       ('Automotive'),
-       ('Clothes'),
-       ('Electronics'),
-       ('Furniture'),
-       ('General'),
-       ('Jewelry'),
-       ('Tools'),
-       ('Toys');
-
+# INSERT INTO categories(category)
+# VALUES ('Appliances'),
+#        ('Automotive'),
+#        ('Clothes'),
+#        ('Electronics'),
+#        ('Furniture'),
+#        ('General'),
+#        ('Jewelry'),
+#        ('Tools'),
+#        ('Toys');
 insert into ads(title, description, user_id)
 Values ('old bed', 'old bed i never slept in', 1),
        ( '2015 mustang gt', 'awesome car my ex totally didn''t destroy', 1),
@@ -69,22 +72,24 @@ Values ('old bed', 'old bed i never slept in', 1),
        ('Buzz lightyear action figure','old but new', 3),
        ('Gucci Jacket','new but old', 3);
 
-insert into cat_ads(ad_id, category_id)
-values (1,5),
-       (1,2),
-       (1,4),
-       (1,9),
-       (1,7),
-       (2,6),
-       (2,5),
-       (2,2),
-       (2,4),
-       (2,6),
-       (3,6),
-       (3,7),
-       (3,2),
-       (3,8),
-       (3,3);
+insert into cat_ads(ad_id, category)
+values (1,'Furniture'),
+       (2,'General'),
+       (3,'Electronics'),
+       (4,'Toys'),
+       (5,'Jewelry'),
+       (6,'General'),
+       (7,'Furniture'),
+       (8,'Automotive'),
+       (9,'Electronic'),
+       (10,'General'),
+       (11,'General'),
+       (12,'Jewelry'),
+       (13,'Automotic'),
+       (14,'Tools'),
+       (15,'Cloths');
+
+
 
 
 

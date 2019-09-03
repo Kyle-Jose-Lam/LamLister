@@ -74,8 +74,15 @@ public class MySQLAdsDao implements Ads {
 
 
     @Override
-    public List<Ad> findbyid(int id) {
-        return null;
+    public Ad findById(long id) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id="+id);
+            ResultSet rs = stmt.executeQuery();
+            return extractAd(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ad.", e);
+        }
     }
 
     @Override
@@ -154,6 +161,18 @@ public class MySQLAdsDao implements Ads {
             ps.executeUpdate();
         }catch (SQLException e){
             throw new RuntimeException("Not able to edit ad, e");
+        }
+    }
+    public Ad findRecentAd(User user) {
+        try{
+            String query = "SELECT * FROM ads WHERE user_id = ? ORDER BY id DESC Limit 1";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setLong(1,+ user.getId());
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return extractAd(rs);
+        }catch (SQLException e){
+            throw new RuntimeException("Not able to find ad, e");
         }
     }
 

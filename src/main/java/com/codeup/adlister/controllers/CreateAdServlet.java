@@ -2,6 +2,7 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
@@ -26,8 +27,22 @@ public class CreateAdServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("user");
         String title = request.getParameter("title");
         String description = request.getParameter("description");
+        String category = request.getParameter("category");
         boolean inputHasErrors = title.isEmpty() || description.isEmpty();
+        String error= "Make sure the following forms are properly filled out: ";
+        if(title.isEmpty()){
+            error += "Title, ";
+        }
+        if(description.isEmpty()){
+            error += "Description, ";
+        }
+        if(category.isEmpty()){
+            error += "Category, ";
+        }
+        error = error.substring(0,error.length()-2)+".";
+        request.getSession().setAttribute("error",error);
 
+//        Category cat = new Category(user.getId(),category);
         if(inputHasErrors){
             Ad ad = new Ad(title,description);
             request.getSession().setAttribute("failed",ad);
@@ -36,6 +51,9 @@ public class CreateAdServlet extends HttpServlet {
         }
         Ad ad = new Ad(user.getId(),title,description);
         DaoFactory.getAdsDao().insert(ad);
+        long adId = DaoFactory.getAdsDao().findRecentAd(user).getId();
+        Category cat = new Category(adId,category);
+        DaoFactory.getCategoriesDao().insert(cat);
         response.sendRedirect("/ads");
     }
 }

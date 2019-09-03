@@ -1,5 +1,8 @@
 package com.codeup.adlister.models;
 
+import com.codeup.adlister.dao.Categories;
+import com.codeup.adlister.dao.DaoFactory;
+
 public class Ad {
     private long id;
     private long userId;
