@@ -8,7 +8,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <div class="container">
+    <div class="container add">
         <h1>Create a new Ad</h1>
         <form action="/ads/create" method="post">
             <c:if test="${sessionScope.error != null}">
@@ -36,9 +36,63 @@
                     <option onclick="" name="">Toys</option>
                 </select>
             </div>
+            <div class="field">
+                <div class="control">
+                    <button class="button" type="button" id="picker">Pick file</button>
+                    <input type="hidden" id="fileupload" name="file">
+                </div>
+                <div class="control" id="nameBox"></div>
+                <div class="control" id="urlBox"></div>
+            </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>
     </div>
+
 <jsp:include page="/WEB-INF/partials/footer.jsp" />
+<%--    FileStack interface--%>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script>
+    // Set up the picker
+    var client = filestack.init("ABhuFU86wTyutrWvOsxZJz");
+    var options = {
+        onUploadDone: updateForm,
+        maxSize: 10 * 1024 * 1024,
+        accept: 'image/*',
+        uploadInBackground: false
+    };
+    var picker = client.picker(options);
+
+    // Get references to the DOM elements
+
+    var form = document.getElementById('add');
+    var fileInput = document.getElementById('fileupload');
+    var btn = document.getElementById('picker');
+    var nameBox = document.getElementById('nameBox');
+    var urlBox = document.getElementById('urlBox');
+
+    // Add our event listeners
+
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        picker.open();
+    });
+    // Helper to overwrite the field input value
+
+    function updateForm (result) {
+        var fileData = result.filesUploaded[0];
+        fileInput.value = fileData.url;
+
+        // Some ugly DOM code to show some data.
+        var name = document.createTextNode('Selected: ' + fileData.filename);
+        var url = document.createElement('a');
+        url.href = fileData.url;
+        url.appendChild(document.createTextNode(fileData.url));
+        nameBox.appendChild(name);
+        urlBox.appendChild(document.createTextNode('Uploaded to: '));
+        urlBox.appendChild(url);
+    }
+    console.log(fileInput.value);
+</script>
+
 </body>
 </html>

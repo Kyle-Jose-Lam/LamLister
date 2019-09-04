@@ -101,10 +101,6 @@
         btn.addEventListener('click', function (e) {
             e.preventDefault();
             picker.open();
-        });x
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            fileInput.value
         });
         // Helper to overwrite the field input value
 

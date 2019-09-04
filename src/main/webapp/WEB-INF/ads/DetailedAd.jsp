@@ -26,6 +26,9 @@
             <p>${ads.description}</p>
         </div>
     </div>
+    <div>
+        <img src="${ads.photo}" alt="">
+    </div>
 </div>
 <jsp:include page="/WEB-INF/partials/footer.jsp" />
 </body>
