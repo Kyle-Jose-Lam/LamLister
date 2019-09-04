@@ -9,16 +9,26 @@ public class User {
     private String password;
     private String full_name;
     private String address;
+    private String photo;
 
     public User() {}
 
-    public User(String username, String email, String password, String name, String address) {
+    public User(long id, String username, String email, String password, String name, String address, String photo) {
+        this.id = id;
         this.username = username;
         this.email = email;
-        setPassword(password);
         this.password = password;
         this.full_name = name;
         this.address = address;
+        this.photo = photo;
+    }
+    public User(String username, String email, String password, String name, String address, String photo) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.full_name = name;
+        this.address = address;
+        this.photo = photo;
     }
 
     public User(long id, String username, String email, String password, String name, String address) {
@@ -86,5 +96,8 @@ public class User {
 
     public void setAddress(String address) { this.address = address; }
 
+    public String getPhoto() { return this.photo; }
+
+    public void setPhoto(String photo) { this.photo = photo; }
 
 }

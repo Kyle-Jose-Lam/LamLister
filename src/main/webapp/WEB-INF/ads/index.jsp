@@ -6,12 +6,13 @@
         <jsp:param name="title" value="Viewing All The Ads"/>
     </jsp:include>
 
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 <div class="container">
-    <h1>Here Are all the ads!</h1>
+    <h1 id="blue-text">Here Are all the ads!</h1>
     <div>
         <form action="/" method="post">
             <input type="text" class="form-control" id="search" name="adsSearch" onkeyup="myFunction()"
@@ -19,23 +20,31 @@
         </form>
     </div>
 
-    <div id="ads">
-        <c:forEach var="ad" items="${ads}">
-            <div class="col-md-6">
-                <h2>${ad.title}</h2>
-                <p>${ad.description}</p>
-                <c:forEach var="cat" items="${cats}">
-                    <c:if test="${ad.id==cat.id}">
-                        <p>${cat.title}</p>
-                    </c:if>
+        <div class="container">
+            <c:forEach var="ad" items="${ads}">
+            <div class="row">
+                <div class="col l6">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title"><h4>${ad.title}</h4></span>
+                            <h6>${ad.description}</h6>
+                          <c:forEach var="cat" items="${cats}">
+                              <c:if test="${ad.id==cat.id}">
+                                  <p>${cat.title}</p>
+                              </c:if>
+                          </c:forEach>
+                            <div class="card-action">
+                                <form method="post" action="/da">
+                                    <button class="btn #29b6f6 light-blue lighten-1" type="submit" name="button" value="${ad.id}">
+                                        <i class="material-icons right">View Ad</i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </c:forEach>
-                <form method="post" action="ads">
-                    <button type="submit" name="button" value="${ad.id}">View Ad</button>
-                </form>
             </div>
-        </c:forEach>
-    </div>
-</div>
 <script>
     function myFunction() {
         var input, filter, name;

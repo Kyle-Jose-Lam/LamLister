@@ -13,10 +13,15 @@ import java.io.IOException;
 
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User userCache =(User) request.getSession().getAttribute("failed");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        User userCache = (User) request.getSession().getAttribute("failed");
 
-        request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+        try {
+            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+            response.sendRedirect("/error");
+        }
 
     }
 
@@ -27,7 +32,7 @@ public class RegisterServlet extends HttpServlet {
         String address = request.getParameter("address");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
-
+        String photo = request.getParameter("file");
         // validate input
         boolean inputHasErrors =
                username.isEmpty()
@@ -35,6 +40,7 @@ public class RegisterServlet extends HttpServlet {
             || name.isEmpty()
             || address.isEmpty()
             || password.isEmpty()
+            || photo.isEmpty()
             || (! password.equals(passwordConfirmation))
             || (DaoFactory.getUsersDao().findByUsername(username) != null);
 
@@ -55,6 +61,9 @@ public class RegisterServlet extends HttpServlet {
             if(password.isEmpty()){
                 error += "Password, ";
             }
+            if(photo.isEmpty()){
+                error += "Photo, ";
+            }
             error = error.substring(0,error.length()-2)+".";
             if(! password.equals(passwordConfirmation)){
                 error += "<br>Passwords do not match.";
@@ -70,9 +79,8 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
         String hash = BCrypt.hashpw(password, BCrypt.gensalt());
-        // create and save a new user
         request.getSession().setAttribute("failed", null);
-        User user = new User(username, email, hash, name, address);
+        User user = new User(username, email, hash, name, address, photo);
         DaoFactory.getUsersDao().insert(user);
         response.sendRedirect("/login");
     }

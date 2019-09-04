@@ -13,17 +13,23 @@ import java.io.IOException;
 
 @WebServlet(name = "controllers.ViewProfileServlet", urlPatterns = "/profile")
 public class ViewProfileServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user =(User) request.getSession().getAttribute("user");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        User user = (User) request.getSession().getAttribute("user");
+        System.out.println(user.getPhoto());
         if (user == null) {
             response.sendRedirect("/login");
             return;
         }
 
         request.setAttribute("myads", DaoFactory.getAdsDao().findAdsByUser(user));
-        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+        try {
+            request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+            response.sendRedirect("/error");
+        }
     }
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 
 

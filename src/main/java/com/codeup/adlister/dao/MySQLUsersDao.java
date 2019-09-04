@@ -36,7 +36,7 @@ public class MySQLUsersDao implements Users {
 
     @Override
     public Long insert(User user) {
-        String query = "INSERT INTO users(username, email, password, full_name, address) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO users(username, email, password, full_name, address, photo) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, user.getUsername());
@@ -44,6 +44,7 @@ public class MySQLUsersDao implements Users {
             stmt.setString(3, user.getPassword());
             stmt.setString(4, user.getFull_name());
             stmt.setString(5, user.getAddress());
+            stmt.setString(6, user.getPhoto());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
@@ -86,7 +87,8 @@ public class MySQLUsersDao implements Users {
             rs.getString("email"),
             rs.getString("password"),
             rs.getString("full_name"),
-            rs.getString("address")
+            rs.getString("address"),
+            rs.getString("photo")
         );
     }
 

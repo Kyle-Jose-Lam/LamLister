@@ -12,34 +12,44 @@ import java.io.IOException;
 
 @WebServlet(name = "controllers.UpdateAdServlet", urlPatterns = "/ads/updateAd")
 public class EditAdsServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long id = Long.parseLong(request.getParameter("button"));
-        Ad ad = DaoFactory.getAdsDao().findAdById(id);
-        request.setAttribute("ad", ad);
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+            String title = request.getParameter("editedTitle");
+            String description = request.getParameter("editedDescription");
+            Long id = Long.parseLong(request.getParameter("adId"));
 
-
-        if(request.getParameter("editedTitle") != null) {
-
-            String editedTitle = request.getParameter("editTitle");
-            String editedDescription = request.getParameter("description");
-            DaoFactory.getAdsDao().updateAds(id,editedTitle,editedDescription);
-            response.sendRedirect("/ads");
-            return;
-
+            Ad ad = new Ad(
+                    title,
+                    description,
+                    id
+            );
+            DaoFactory.getAdsDao().updateAds(ad);
+//            user.setUsername(updatedUser.getUsername());
+            try {
+                request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+                response.sendRedirect("/error");
+            }
         }
 
-        request.getRequestDispatcher("/WEB-INF/ads/editAd.jsp").forward(request, response);
-    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
             return;
         }
 
-        request.getRequestDispatcher("/WEB-INF/ads/editAd.jsp").forward(request, response);
-
-
+        long adId = (long) Long.parseLong(request.getParameter("adId"));
+        System.out.println(adId);
+        Ad ad = DaoFactory.getAdsDao().findAdById(adId);
+        System.out.println(ad);
+        request.setAttribute("ad", ad);
+        try {
+            request.getRequestDispatcher("/WEB-INF/ads/editAd.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+            response.sendRedirect("/error");
+        }
     }
 }
 

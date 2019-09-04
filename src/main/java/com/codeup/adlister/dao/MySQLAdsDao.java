@@ -130,14 +130,14 @@ public class MySQLAdsDao implements Ads {
 
 
     @Override
-    public void updateAds(Long id, String title, String description) {
+    public void updateAds(Ad ad) {
         try{
-            String query = "Update ads set title = ?, description = ? where id = ?";
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1,title);
-            ps.setString(2,description);
-            ps.setLong(3,id);
-            ps.executeUpdate();
+            String query = "UPDATE ads set title = ?, description = ? where id = ?";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1,ad.getTitle());
+            stmt.setString(2,ad.getDescription());
+            stmt.setLong(3,ad.getId());
+            stmt.executeUpdate();
         }catch (SQLException e){
             throw new RuntimeException("Unable to edit ad, e");
         }
@@ -151,6 +151,7 @@ public class MySQLAdsDao implements Ads {
             rs.next();
             return extractAd(rs);
         }catch (SQLException e){
+
             throw new RuntimeException("Not able to find ad, e");
         }
     }
@@ -170,7 +171,7 @@ public class MySQLAdsDao implements Ads {
         }
 
     }
-    }
+}
 
 
 
