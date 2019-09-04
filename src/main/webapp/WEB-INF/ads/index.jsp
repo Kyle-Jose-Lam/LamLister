@@ -18,67 +18,114 @@
     <form action="/" method="post">
         <input type="text" class="form-control" id="search" name="adsSearch" onkeyup="myFunction()" aria-label="Text input with dropdown button" placeholder="Search your Ad..">
         <div class="input-group-append">
-                <select class="dropdown-content">
-                    <option onclick="" name="">Appliances</option>
-                    <option onclick="" name="">Automotive</option>
-                    <option onclick="" name="">Clothes</option>
-                    <option onclick="" name="">Electronics</option>
-                    <option onclick="" name="">Furniture</option>
-                    <option onclick="" name="">General</option>
-                    <option onclick="" name="">Jewelry</option>
-                    <option onclick="" name="">Tools</option>
-                    <option onclick="" name="">Toys</option>
+                <select id="catads" class="dropdown-content">
+                    <option>Select Category</option>
+                    <option>Appliances</option>
+                    <option>Automotive</option>
+                    <option>Clothes</option>
+                    <option>Electronics</option>
+                    <option>Furniture</option>
+                    <option>General</option>
+                    <option>Jewelry</option>
+                    <option>Tools</option>
+                    <option>Toys</option>
                 </select>
         </div>
     </form>
     </div>
-                <div class="container">
-                    <c:forEach var="ad" items="${ads}">
-                    <div class="row">
-                        <div class="col l6">
-                            <div class="card blue-grey darken-1">
-                                <div class="card-content white-text">
-                                    <span class="card-title"><h4>${ad.title}</h4></span>
-                                    <h6>${ad.description}</h6>
-                                    <div class="card-action">
-                                        <form method="post" action="/da">
-                                            <button class="btn #29b6f6 light-blue lighten-1" type="submit" name="button" value="${ad.id}">
-                                                <i class="material-icons right">View Ad</i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
+        <div class="container">
+            <c:forEach var="ad" items="${ads}">
+            <div class="row">
+                <div class="col l6">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title"><h4>${ad.title}</h4></span>
+                            <h6>${ad.description}</h6>
+                            <div class="card-action">
+                                <form method="post" action="/da">
+                                    <button class="btn #29b6f6 light-blue lighten-1" type="submit" name="button" value="${ad.id}">
+                                        <i class="material-icons right">View Ad</i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
-                        </c:forEach>
                     </div>
+                </div>
+                </c:forEach>
+            </div>
 <script>
 
 
 
+
+    //category script
+    function category(ad) {
+        var selectCat = document.getElementById('catads').valueOf();
+        <c:forEach var="cat" items="${cats}">
+            if(selectCat === ${cat.title} && ad.id === ${cat.id}){
+                return ad
+            }
+        </c:forEach>
+    }
+
+    //Original Script
     function myFunction() {
-        var input, filter, name, i;
+        var input, filter, name;
         input = document.getElementById("search");
         filter = input.value.toUpperCase();
-        // var filteredSearch = [];
-        var html = "";
+        var filteredSearch = [];
         <c:forEach var="ad" items="${ads}">
-            name = '${ad.title}';
-            if (name.toUpperCase().indexOf(filter) > -1) {
-                <%--filteredSearch.push(${ad.id});--%>
-                html += "<div class=\"col-md-6\">\n" +
-                    "            <h2>${ad.title}</h2>\n" +
-                    "            <p>${ad.description}</p>\n" +
-                    "            <form method=\"post\" action=\"/da\">\n" +
-                    "                <button type=\"submit\" name=\"button\" value=\"${ad.id}\">View Ad</button>\n" +
-                    "            </form>\n" +
-                    "        </div>\n"
-            }
-            // console.log(filteredSearch);
-        </c:forEach>
-        document.getElementById("ads").innerHTML = (html)
+        name = '${ad.title}';
 
+        if (name.toUpperCase().indexOf(filter) > -1) {
+            filteredSearch.push(${ad.id});
+        }
+        console.log(filteredSearch);
+        </c:forEach>
+        var html = "";
+        filteredSearch.forEach(function(){
+
+            html += "<div class=\"col-md-6\">\n" +
+                "            <h2>${ad.title}</h2>\n" +
+                "            <p>${ad.description}</p>\n" +
+                "            <form method=\"post\" action=\"/da\">\n" +
+                "                <button type=\"submit\" name=\"button\" value=\"${ad.id}\">View Ad</button>\n" +
+                "            </form>\n" +
+                "        </div>\n"
+        });
+        document.getElementById("ads").innerHTML = (html)
     }
+
+
+
+    //Kyles Script
+    <%--function myFunction() {--%>
+    <%--    var listOfAds = [];--%>
+    <%--    <c:forEach var="ad" items="${ads}">--%>
+    <%--        listOfAds.push(category(${ad}));--%>
+    <%--    </c:forEach>--%>
+
+    <%--    var input, filter, name, i;--%>
+    <%--    input = document.getElementById("search");--%>
+    <%--    filter = input.value.toUpperCase();--%>
+    <%--    // var filteredSearch = [];--%>
+    <%--    var html = "";--%>
+    <%--    listOfAds.forEach(function(){--%>
+    <%--        name = '${ad.title}';--%>
+    <%--        if (name.toUpperCase().indexOf(filter) > -1) {--%>
+    <%--            &lt;%&ndash;filteredSearch.push(${ad.id});&ndash;%&gt;--%>
+    <%--            html += "<div class=\"col-md-6\">\n" +--%>
+    <%--                "            <h2>${ad.title}</h2>\n" +--%>
+    <%--                "            <p>${ad.description}</p>\n" +--%>
+    <%--                "     <form method=\"post\" action=\"/da\">\n" +--%>
+    <%--                "                <button type=\"submit\" name=\"button\" value=\"${ad.id}\">View Ad</button>\n" +--%>
+    <%--                "            </form>\n" +--%>
+    <%--                "        </div>\n"--%>
+    <%--        }--%>
+    <%--        // console.log(filteredSearch);--%>
+    <%--    });--%>
+    <%--    document.getElementById("ads").innerHTML = (html)--%>
+    <%--}--%>
 </script>
 
 
