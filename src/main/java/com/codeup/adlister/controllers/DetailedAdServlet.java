@@ -22,16 +22,13 @@ public class DetailedAdServlet extends HttpServlet {
         }
     }
 
-
-
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         int adId = Integer.parseInt(request.getParameter("button"));
 
         request.setAttribute("ads", DaoFactory.getAdsDao().showAd(adId));
-        User user = DaoFactory.getUsersDao().findUserByAdId(adId);
-        request.setAttribute("user", user);
+//        User user = DaoFactory.getUsersDao().findUserByAdId(adId);
+//        request.setAttribute("user", user);
 
         try {
             request.getRequestDispatcher("/WEB-INF/ads/DetailedAd.jsp").forward(request, response);

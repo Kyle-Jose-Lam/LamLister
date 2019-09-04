@@ -29,8 +29,6 @@ public class EditProfileServlet  extends HttpServlet {
 
         String username = request.getParameter("username");
         String email = request.getParameter("email");
-//        String password = req.getParameter("password");
-//        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
         User updatedUser = new User(
                 username,

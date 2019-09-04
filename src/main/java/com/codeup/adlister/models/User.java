@@ -31,19 +31,12 @@ public class User {
         this.photo = photo;
     }
 
-    public User(long id, String username, String email, String password, String name, String address) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.full_name = name;
-        this.address = address;
-    }
-    public User(String username, String email, String name, String address) {
+    public User(String username, String email, String name, String address, String photo) {
         this.username = username;
         this.email = email;
         this.full_name = name;
         this.address = address;
+        this.photo = photo;
     }
 
     public User(long id, String username, String email, String password) {

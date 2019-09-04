@@ -47,7 +47,6 @@ public class MySQLCategoriesDao implements Categories {
         return new Category(
                 rs.getLong("ad_id"),
                 rs.getString("category")
-
         );
     }
     public void insert(Category cat) {

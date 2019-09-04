@@ -11,15 +11,6 @@
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div id="top">
 
-<%--        <div id="midtop"></div>--%>
-<%--        <div>--%>
-<%--            <div class="col l8"></div>--%>
-<%--        <div id="searchdiv" class="col l4">--%>
-<%--        <form action="/" method="post">--%>
-<%--            <input type="text" class="form-control" id="search" name="adsSearch" onkeyup="myFunction()" aria-label="Text input with dropdown button" placeholder="Search your Ad..">--%>
-<%--        </form>--%>
-<%--        </div>--%>
-<%--    </div>--%>
     </div>
 
     <footer class="page-footer">

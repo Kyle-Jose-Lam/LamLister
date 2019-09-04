@@ -11,16 +11,16 @@
     <div class="container add">
         <h1>Create a new Ad</h1>
         <form action="/ads/create" method="post">
-            <c:if test="${sessionScope.error != null}">
-                <p style="color:red;font-weight:bold">${sessionScope.error}</p>
+            <c:if test="${sessionScope.errorAd != null}">
+                <p style="color:red;font-weight:bold">${sessionScope.errorAd}</p>
             </c:if>
             <div class="form-group">
                 <label for="title">Title</label>
-                <input id="title" name="title" class="form-control" type="text" value="${sessionScope.failed.title}">
+                <input id="title" name="title" class="form-control" type="text" value="${sessionScope.failedAd.title}">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" class="form-control" type="text">${sessionScope.failed.description}</textarea>
+                <textarea id="description" name="description" class="form-control" type="text">${sessionScope.failedAd.description}</textarea>
             </div>
             <div class="form-group">
                 <label for="cat"></label>

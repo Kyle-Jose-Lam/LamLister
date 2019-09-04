@@ -17,9 +17,6 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <div class="col l12">
 <div class="card horizontal">
-<%--    <div class="card-image">--%>
-<%--        <img src="${ads.photo}" alt="profile photo" style="width:300px;height:300px;border-radius: 50%">--%>
-<%--    </div>--%>
     <div class="card blue-grey darken-1">
         <div class="card-content white-text">
             <span class="card-title"><h4>${ads.title}</h4></span>
