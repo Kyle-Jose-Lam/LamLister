@@ -33,6 +33,7 @@ public class CreateAdServlet extends HttpServlet {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String category = request.getParameter("category");
+        String photo = request.getParameter("file");
         boolean inputHasErrors = title.isEmpty() || description.isEmpty();
         String error= "Make sure the following forms are properly filled out: ";
         if(title.isEmpty()){
@@ -44,6 +45,9 @@ public class CreateAdServlet extends HttpServlet {
         if(category.isEmpty()){
             error += "Category, ";
         }
+        if(photo.isEmpty()){
+            error += "Photo, ";
+        }
         error = error.substring(0,error.length()-2)+".";
         request.getSession().setAttribute("error",error);
 
@@ -54,7 +58,7 @@ public class CreateAdServlet extends HttpServlet {
             response.sendRedirect("/ads/create");
             return;
         }
-        Ad ad = new Ad(user.getId(),title,description);
+        Ad ad = new Ad(user.getId(),title,description, photo);
         DaoFactory.getAdsDao().insert(ad);
         long adId = DaoFactory.getAdsDao().findRecentAd(user).getId();
         Category cat = new Category(adId,category);
