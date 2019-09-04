@@ -20,8 +20,6 @@ public class DaoFactory {
         return categoriesDao;
     }
 
-
-
     public static Users getUsersDao() {
         if (usersDao == null) {
             usersDao = new MySQLUsersDao(config);

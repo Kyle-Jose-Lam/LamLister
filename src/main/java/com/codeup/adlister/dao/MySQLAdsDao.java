@@ -69,12 +69,6 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public List<Ad> da(int id) {
-        return null;
-    }
-
-
-    @Override
     public Ad findById(long id) {
         PreparedStatement stmt = null;
         try {

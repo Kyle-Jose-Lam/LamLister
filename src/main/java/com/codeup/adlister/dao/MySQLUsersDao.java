@@ -55,11 +55,6 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public User findUserByAdId(long adId) {
-        return null;
-    }
-
-    @Override
     public void updateProfile(User updatedUser) {
         String query = "UPDATE users SET username  = ? , email = ?  where id = ?";
         try {

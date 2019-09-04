@@ -29,8 +29,6 @@ public class AdsIndexServlet extends HttpServlet {
         Long adId = Long.parseLong(request.getParameter("button"));
         Ad myad = DaoFactory.getAdsDao().showAd(adId);
         request.setAttribute("ads", myad);
-//        User user = DaoFactory.getUsersDao().findUserByAdId(adId);
-//        request.setAttribute("user", user);
         response.sendRedirect("/da");
     }
 }

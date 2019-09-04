@@ -23,7 +23,6 @@ public class EditAdsServlet extends HttpServlet {
                     id
             );
             DaoFactory.getAdsDao().updateAds(ad);
-//            user.setUsername(updatedUser.getUsername());
             try {
                 request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
             } catch (ServletException e) {

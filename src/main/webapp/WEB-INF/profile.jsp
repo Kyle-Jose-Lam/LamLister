@@ -10,15 +10,6 @@
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<%--    <div class="container">--%>
-<%--        <h1>Welcome, ${sessionScope.user.username}!</h1>--%>
-<%--        <p class="updateBtn"><a href="/updateProfile">Update Information</a></p>--%>
-<%--        <div>--%>
-<%--            <img src="${user.photo}" alt="profile photo" style="width:300px;height:300px;border-radius: 50%">--%>
-<%--            <p>Name: ${user.full_name}</p>--%>
-<%--            <p>Email: ${user.email}</p>--%>
-<%--            <p>Address: ${user.address}</p>--%>
-<%--        </div>--%>
 <div class="container">
         <div class="col l6 s12 m7">
             <h1>Welcome, ${sessionScope.user.username}!</h1>

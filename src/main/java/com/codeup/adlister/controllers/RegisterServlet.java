@@ -72,7 +72,7 @@ public class RegisterServlet extends HttpServlet {
                 error += "<br>Username is already taken.";
                 username = null;
             }
-            User user = new User(username, email, name, address);
+            User user = new User(username, email, name, address, photo);
             request.getSession().setAttribute("failed",user);
             request.getSession().setAttribute("error",error);
             response.sendRedirect("/register");
@@ -80,6 +80,7 @@ public class RegisterServlet extends HttpServlet {
         }
         String hash = BCrypt.hashpw(password, BCrypt.gensalt());
         request.getSession().setAttribute("failed", null);
+        request.getSession().setAttribute("error", null);
         User user = new User(username, email, hash, name, address, photo);
         DaoFactory.getUsersDao().insert(user);
         response.sendRedirect("/login");
