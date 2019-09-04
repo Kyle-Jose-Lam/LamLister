@@ -56,22 +56,21 @@ Values ('Kyle','kyle@codeup.com','$2a$10$Np9uN3PKPI10iYO1Yv.de.vHgWaJ/VunlS.uAV9
 #        ('Jewelry'),
 #        ('Tools'),
 #        ('Toys');
-insert into ads(title, description, user_id)
-Values ('old bed', 'old bed i never slept in', 1),
-       ('2015 mustang gt', 'awesome car my ex totally didn''t destroy', 1),
-       ('xbox', 'my video games', 1),
-       ('shiny toy gun', 'a toy i never used growing up', 1),
-       ('Gold chain','14K cuban link for the low', 1),
-       ('Chainsaw','prop from texas chainsaw massacre', 2),
-       ('L desk','old but still works like a champ', 2),
-       ('2012 fiat','works good but no AC', 2),
-       ('24inch BenQ Monitor','almost brand new, 1080p 60hz', 2),
-       ('glass martini set','got it for my birthday but never used it', 2),
-       ('Dog cage for sale','no rust and big enough for two dogs', 3),
-       ('Wedding ring','white gold with a vvs1 caret diamond', 3),
-       ('2019 488 Pista Spider','500 miles with track pack. $500K', 3),
-       ('Buzz lightyear action figure','old but new', 3),
-       ('Gucci Jacket','new but old', 3);
+insert into ads(title, description, user_id, photo)
+Values ('old bed', 'old bed i never slept in', 1,'https://cdn.filestackcontent.com/ZbcS5A6SpqYckcoBrVlv'),
+       ('2015 mustang gt', 'awesome car my ex totally didn''t destroy', 1,'https://cdn.filestackcontent.com/wg68aBgPTeQA9RCkR7lA'),
+       ('xbox', 'my video games', 1,'https://cdn.filestackcontent.com/jB77v2NbTMuN2Uis8F62'),
+       ('shiny toy gun', 'a toy i never used growing up', 1,'https://cdn.filestackcontent.com/gEQgdHUORRe9Ow8Ng5gE'),
+       ('Gold chain','14K cuban link for the low', 1, 'https://cdn.filestackcontent.com/fX6WtdtUQDKmdQg1By1j'),
+       ('Chainsaw','prop from texas chainsaw massacre', 2,'https://cdn.filestackcontent.com/M5InYC5hQe6EOwIDcxkg'),
+       ('L desk','old but still works like a champ', 2,'https://cdn.filestackcontent.com/c0Zjme1RRvOdIFW0xYPD'),
+       ('2012 fiat','works good but no AC', 2,'https://cdn.filestackcontent.com/CVgiktJiSWSyZnHD1VYT'),
+       ('24inch BenQ Monitor','almost brand new, 1080p 60hz', 2,'https://cdn.filestackcontent.com/PhBWS4ZaQrqsULYSCz4j'),
+       ('glass martini set','got it for my birthday but never used it', 2,'https://cdn.filestackcontent.com/VhRqARF5Ts6FSefMVgob'),
+       ('Dog cage for sale','no rust and big enough for two dogs', 3, 'https://cdn.filestackcontent.com/Vrgn9qujSlS1tTQhkLgY'),
+       ('Wedding ring','white gold with a vvs1 caret diamond', 3, 'https://cdn.filestackcontent.com/hwjcqIxpSwGSf9qMrEtt'),
+       ('2019 488 Pista Spider','500 miles with track pack. $500K', 3, 'https://cdn.filestackcontent.com/oCHSstohTZGUpONVOxKv'),
+       ('Buzz lightyear action figure','old but new', 3,'https://cdn.filestackcontent.com/fb0Sqw6So6eK0BruoJKj');
 
 insert into cat_ads(ad_id, category)
 values (1,'Furniture'),
@@ -87,8 +86,7 @@ values (1,'Furniture'),
        (11,'General'),
        (12,'Jewelry'),
        (13,'Automotive'),
-       (14,'Tools'),
-       (15,'Clothes');
+       (14,'Tools');
 
 
 
