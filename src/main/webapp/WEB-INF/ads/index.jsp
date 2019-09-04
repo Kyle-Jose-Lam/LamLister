@@ -15,13 +15,12 @@
 <div class="container">
     <h1 id="blue-text">Local Ads</h1>
     <div>
-    <form class="searchbar" action="/" method="post">
+    <form class="searchbar" action="/ads" method="post">
         <input type="text" class="form-control" id="search" name="adsSearch" onkeyup="myFunction()" aria-label="Text input with dropdown button" placeholder="Search your Ad..">
     </form>
     </div>
         <div class="container">
-
-            <div class="row">
+            <div class="row" id="container">
             <c:forEach var="ad" items="${ads}">
                 <div class="col l6">
                     <div class="card blue-grey darken-1">
@@ -51,10 +50,10 @@
 <jsp:include page="/WEB-INF/partials/footer.jsp" />
 
 <script>
-    const myFunction = function() {
-        let input, filter, name;
-        let filteredSearch = [];
-        let html = "";
+    var myFunction = function() {
+        var input, filter, name;
+        var filteredSearch = [];
+        var html = "";
         input = document.getElementById("search");
         filter = input.value.toUpperCase();
         <c:forEach var="ad" items="${ads}">
