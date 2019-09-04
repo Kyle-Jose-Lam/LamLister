@@ -10,6 +10,7 @@
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div id="top">
+
 <%--        <div id="midtop"></div>--%>
 <%--        <div>--%>
 <%--            <div class="col l8"></div>--%>

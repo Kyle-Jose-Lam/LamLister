@@ -14,7 +14,7 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setAttribute("ads", DaoFactory.getAdsDao().all());
         try {
-            request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
             response.sendRedirect("/error");
