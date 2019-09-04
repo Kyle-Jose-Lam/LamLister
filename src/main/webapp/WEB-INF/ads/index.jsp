@@ -14,13 +14,13 @@
 <div class="container">
     <h1 id="blue-text">Here Are all the ads!</h1>
     <div>
-        <form action="/" method="post">
+        <form action="/ads" method="post">
             <input type="text" class="form-control" id="search" name="adsSearch" onkeyup="myFunction()"
                    aria-label="Text input with dropdown button" placeholder="Search your Ad..">
         </form>
     </div>
 
-        <div class="container">
+        <div class="container" id="container">
             <c:forEach var="ad" items="${ads}">
             <div class="row">
                 <div class="col l6">
@@ -46,31 +46,37 @@
                 </c:forEach>
             </div>
 <script>
-    function myFunction() {
-        var input, filter, name;
-        var filteredSearch = [];
-        var html = "";
+    const myFunction = function() {
+        let input, filter, name;
+        let filteredSearch = [];
+        let html = "";
         input = document.getElementById("search");
         filter = input.value.toUpperCase();
         <c:forEach var="ad" items="${ads}">
         name = '${ad.title}';
         if (name.toUpperCase().indexOf(filter) > -1) {
             filteredSearch.push(["${ad.title}", "${ad.description}"]);
-
-            html += "<div id=\"ads\">\n"+
-                "<div class=\"col-md-6\">\n" +
-                "            <h2>${ad.title}</h2>\n" +
-                "            <p>${ad.description}</p>\n" +
-                "     <form method=\"post\" action=\"ads\">\n" +
-                "                <button type=\"submit\" name=\"button\" value=\"${ad.id}\">View Ad</button>\n" +
-                "            </form>\n" +
-                "        </div>\n"+
-                "   </div>\n"
+            html +=     '<div class="row">\n'+
+                            '<div class="col l6">\n'+
+                                '<div class="card blue-grey darken-1">\n'+
+                                    '<div class="card-content white-text">\n'+
+                                        '<span class="card-title"><h4>${ad.title}</h4></span>\n'+
+                                        "<h6>${ad.description}</h6>\n"+
+                                        '<div class="card-action">\n'+
+                                        '<form method="post" action="/da">\n'+
+                                            '<button class="btn #29b6f6 light-blue lighten-1" type="submit" name="button" value="${ad.id}">\n'+
+                                             '<i class="material-icons right">View Ad</i>\n'+
+                                             '</button>\n'+
+                                        '</form>\n'+
+                                    '</div>\n'+
+                                '</div>\n'+
+                            '</div>\n'+
+                        '</div>\n'
         }
         console.log(filteredSearch);
         </c:forEach>
 
-        document.getElementById("ads").innerHTML = (html);
+        document.getElementById("container").innerHTML = (html);
     }
 </script>
 
