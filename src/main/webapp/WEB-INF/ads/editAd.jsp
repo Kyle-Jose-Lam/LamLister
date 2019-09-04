@@ -7,6 +7,8 @@
     </jsp:include>
     <title></title></head>
 <body>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+
 <div class="card-body">
     <h5 class="card-title text-center">Edit Ad</h5>
     <form class="form-signin" action="/ads/updateAd" method="post">

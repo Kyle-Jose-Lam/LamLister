@@ -5,6 +5,8 @@
 
 </head>
 <body>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+
 <div class="container form">
     <h1>Update Profile Information</h1>
     <hr>

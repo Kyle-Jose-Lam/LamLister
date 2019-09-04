@@ -36,7 +36,7 @@
         </c:if>
 
 
-        <form action="/register" method="post">
+        <form action="/register" method="post" id="reg">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input id="username" name="username" class="form-control" type="text" value="${sessionScope.failed.username}">
@@ -61,8 +61,67 @@
                 <label for="confirm_password">Confirm Password</label>
                 <input id="confirm_password" name="confirm_password" class="form-control" type="password">
             </div>
+
+            <div class="field">
+                <div class="control">
+                    <button class="button" type="button" id="picker">Pick file</button>
+                    <input type="hidden" id="fileupload" name="file">
+                </div>
+                <div class="control" id="nameBox"></div>
+                <div class="control" id="urlBox"></div>
+            </div>
+
             <input type="submit" class="btn btn-primary btn-block">
         </form>
     </div>
+
+    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<%--    FileStack interface--%>
+    <script>
+        // Set up the picker
+        var client = filestack.init("ABhuFU86wTyutrWvOsxZJz");
+        var options = {
+            onUploadDone: updateForm,
+            maxSize: 10 * 1024 * 1024,
+            accept: 'image/*',
+            uploadInBackground: false
+        };
+        var picker = client.picker(options);
+
+        // Get references to the DOM elements
+
+        var form = document.getElementById('reg');
+        var fileInput = document.getElementById('fileupload');
+        var btn = document.getElementById('picker');
+        var nameBox = document.getElementById('nameBox');
+        var urlBox = document.getElementById('urlBox');
+
+        // Add our event listeners
+
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            picker.open();
+        });x
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            fileInput.value
+        });
+        // Helper to overwrite the field input value
+
+        function updateForm (result) {
+            var fileData = result.filesUploaded[0];
+            fileInput.value = fileData.url;
+
+            // Some ugly DOM code to show some data.
+            var name = document.createTextNode('Selected: ' + fileData.filename);
+            var url = document.createElement('a');
+            url.href = fileData.url;
+            url.appendChild(document.createTextNode(fileData.url));
+            nameBox.appendChild(name);
+            urlBox.appendChild(document.createTextNode('Uploaded to: '));
+            urlBox.appendChild(url);
+        }
+        console.log(fileInput.value);
+    </script>
 </body>
 </html>
