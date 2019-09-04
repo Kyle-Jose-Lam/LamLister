@@ -27,7 +27,7 @@ public class MySQLCategoriesDao implements Categories {
     public List<Category> all() {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM categories");
+            stmt = connection.prepareStatement("SELECT * FROM cat_ads");
             ResultSet rs = stmt.executeQuery();
             return createCategoriesFromResults(rs);
         } catch (SQLException e) {
@@ -45,8 +45,8 @@ public class MySQLCategoriesDao implements Categories {
 
     private Category extractCategory(ResultSet rs) throws SQLException {
         return new Category(
-                rs.getLong("id"),
-                rs.getString("title")
+                rs.getLong("ad_id"),
+                rs.getString("category")
 
         );
     }
