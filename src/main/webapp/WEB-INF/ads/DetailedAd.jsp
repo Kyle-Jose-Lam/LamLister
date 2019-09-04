@@ -23,6 +23,9 @@
             </div>
         </div>
     </div>
+    <div>
+        <img src="${ads.photo}" alt="">
+    </div>
 </div>
 </div>
 </body>

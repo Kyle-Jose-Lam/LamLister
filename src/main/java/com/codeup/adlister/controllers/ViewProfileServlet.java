@@ -15,7 +15,6 @@ import java.io.IOException;
 public class ViewProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User) request.getSession().getAttribute("user");
-        System.out.println(user.getPhoto());
         if (user == null) {
             response.sendRedirect("/login");
             return;
