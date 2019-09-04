@@ -18,8 +18,9 @@
                 <label for="password">Password</label>
                 <input id="password" name="password" class="form-control" type="password">
             </div>
-            <input type="submit" class="btn btn-primary btn-block" value="Log In">
+            <input type="submit" class="btn #29b6f6 light-blue lighten-1" value="Log In">
         </form>
     </div>
+    <jsp:include page="/WEB-INF/partials/footer.jsp" />
 </body>
 </html>

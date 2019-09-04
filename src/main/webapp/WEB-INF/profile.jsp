@@ -10,20 +10,36 @@
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-    <div class="container">
-        <h1>Welcome, ${sessionScope.user.username}!</h1>
-        <p class="updateBtn"><a href="/updateProfile">Update Information</a></p>
-        <div>
-            <img src="${user.photo}" alt="profile photo" style="width:300px;height:300px;border-radius: 50%">
-            <p>Name: ${user.full_name}</p>
-            <p>Email: ${user.email}</p>
-            <p>Address: ${user.address}</p>
+<%--    <div class="container">--%>
+<%--        <h1>Welcome, ${sessionScope.user.username}!</h1>--%>
+<%--        <p class="updateBtn"><a href="/updateProfile">Update Information</a></p>--%>
+<%--        <div>--%>
+<%--            <img src="${user.photo}" alt="profile photo" style="width:300px;height:300px;border-radius: 50%">--%>
+<%--            <p>Name: ${user.full_name}</p>--%>
+<%--            <p>Email: ${user.email}</p>--%>
+<%--            <p>Address: ${user.address}</p>--%>
+<%--        </div>--%>
+<div class="container">
+        <div class="col l6 s12 m7">
+            <h1>Welcome, ${sessionScope.user.username}!</h1>
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="${user.photo}" alt="profile photo" style="width:300px;height:300px;border-radius: 50%">
+                </div>
+                <div class="card-stacked">
+                    <div class="#0277bd light-blue darken-3 card-content">
+                        <p>Name: ${user.full_name}</p>
+                        <p>Email: ${user.email}</p>
+                        <p>Address: ${user.address}</p>
+                    </div>
+                    <div class="card-action #01579b light-blue darken-4">
+                        <p class="updateBtn"><a href="/updateProfile">Update Information</a></p>
+                    </div>
+                </div>
+            </div>
         </div>
-<%--        <form method="post" action="/updateProfile">--%>
-<%--            <button type="submit" name="button3" value="${sessionScope.user.id}">Edit Profile</button>--%>
-<%--        </form>--%>
-
     </div>
+
 <div class="container">
     <c:forEach var="ad" items="${myads}">
         <div class="row">
@@ -45,5 +61,6 @@
         </div>
     </c:forEach>
 </div>
+        <jsp:include page="/WEB-INF/partials/footer.jsp" />
 </body>
 </html>

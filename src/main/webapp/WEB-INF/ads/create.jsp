@@ -48,6 +48,7 @@
         </form>
     </div>
 
+<jsp:include page="/WEB-INF/partials/footer.jsp" />
 <%--    FileStack interface--%>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script>
@@ -92,5 +93,6 @@
     }
     console.log(fileInput.value);
 </script>
+
 </body>
 </html>
