@@ -85,9 +85,9 @@ values (1,'Furniture'),
        (10,'General'),
        (11,'General'),
        (12,'Jewelry'),
-       (13,'Automotic'),
+       (13,'Automotive'),
        (14,'Tools'),
-       (15,'Cloths');
+       (15,'Clothes');
 
 
 

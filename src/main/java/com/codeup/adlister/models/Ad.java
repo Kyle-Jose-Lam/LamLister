@@ -25,6 +25,12 @@ public class Ad {
         this.title = title;
         this.description = description;
     }
+    // Updating ads constructor
+    public Ad(String title, String description, Long id) {
+        this.title = title;
+        this.description = description;
+        this.id = id;
+    }
 
     public long getId() {
         return id;

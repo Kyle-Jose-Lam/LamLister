@@ -2,8 +2,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
-</head>
+    <jsp:include page="/WEB-INF/partials/head.jsp">
+        <jsp:param name="title" value="Edit Profile" />
+    </jsp:include>
+    <title></title></head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
@@ -19,7 +21,10 @@
             <label for="email">email</label>
             <input id="email" name="email" class="form-control use" type="text" value="${user.email}">
         </div>
-        <input type="submit" class="btn extra btn-block" value="update">
+<%--        <input type="submit" class="btn extra btn-block" value="update">--%>
+        <button class="btn waves-effect waves-light" type="submit" name="action" value="update">
+            <i class="material-icons right">send</i>
+        </button>
     </form>
 </div>
 </body>

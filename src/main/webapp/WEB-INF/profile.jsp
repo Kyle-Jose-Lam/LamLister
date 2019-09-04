@@ -5,12 +5,9 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Your Profile" />
     </jsp:include>
+    <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
-<%--<c:url var="deleteLink" value="">--%>
-<%--    <c:param name="command" value="DELETE"/>--%>
-<%--    <c:param name="adId" value="${ad.id}"/>--%>
-<%--</c:url>--%>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
     <div class="container">
@@ -25,18 +22,28 @@
 <%--        <form method="post" action="/updateProfile">--%>
 <%--            <button type="submit" name="button3" value="${sessionScope.user.id}">Edit Profile</button>--%>
 <%--        </form>--%>
+
     </div>
+<div class="container">
     <c:forEach var="ad" items="${myads}">
-        <div class="col-md-6">
-            <h2>${ad.title}</h2>
-            <p>${ad.description}</p>
-            <form method="post" action="/ads/updateAd">
-                <button type="submit" name="button" value="${ad.id}">Edit</button>
+        <div class="row">
+            <div class="col l6">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title"><h4>${ad.title}</h4></span>
+                        <h6>${ad.description}</h6>
+                        <div class="card-action">
+            <form method="get" action="/ads/updateAd">
+                <button class="btn #29b6f6 light-blue lighten-1" type="submit" name="adId" value="${ad.id}">Edit</button>
             </form>
             <form method="post" action="/ads/delete">
-                <button type="submit" name="button2" value="${ad.id}">Delete</button>
+                <button class="btn #29b6f6 light-blue lighten-1" type="submit" name="button2" value="${ad.id}">Delete</button>
             </form>
+                        </div>
+                    </div>
+                    </div>
         </div>
     </c:forEach>
+</div>
 </body>
 </html>
