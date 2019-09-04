@@ -5,37 +5,21 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Viewing All The Ads" />
     </jsp:include>
-
     <link rel="stylesheet" href="css/style.css">
-
-
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<div>
 <div class="container">
-    <h1 id="blue-text">Here Are all the ads!</h1>
+    <h1 id="blue-text">Local Ads</h1>
     <div>
-    <form action="/" method="post">
+    <form class="searchbar" action="/" method="post">
         <input type="text" class="form-control" id="search" name="adsSearch" onkeyup="myFunction()" aria-label="Text input with dropdown button" placeholder="Search your Ad..">
-        <div class="input-group-append">
-                <select id="catads" class="dropdown-content">
-                    <option>Select Category</option>
-                    <option>Appliances</option>
-                    <option>Automotive</option>
-                    <option>Clothes</option>
-                    <option>Electronics</option>
-                    <option>Furniture</option>
-                    <option>General</option>
-                    <option>Jewelry</option>
-                    <option>Tools</option>
-                    <option>Toys</option>
-                </select>
-        </div>
     </form>
     </div>
         <div class="container">
-            <c:forEach var="ad" items="${ads}">
             <div class="row">
+            <c:forEach var="ad" items="${ads}">
                 <div class="col l6">
                     <div class="card blue-grey darken-1">
                         <div class="card-content white-text">
@@ -53,11 +37,12 @@
                 </div>
                 </c:forEach>
             </div>
+        </div>
+</div>
+</div>
+<jsp:include page="/WEB-INF/partials/footer.jsp" />
+
 <script>
-
-
-
-
     //category script
     function category(ad) {
         var selectCat = document.getElementById('catads').valueOf();

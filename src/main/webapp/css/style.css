@@ -1,5 +1,19 @@
 .card{
+     height: 250px;
+     overflow: hidden;
+ }
+.logo {
+    height: 50px;
+    width: 50px;
+}
+#top{
+    background-image: url("../img/banner.jpg");
+    height: 737px;
+}
+#midtop{
     height: 250px;
-    overflow: hidden;
+}
+#searchdiv{
+    width: 300px;
 }
 

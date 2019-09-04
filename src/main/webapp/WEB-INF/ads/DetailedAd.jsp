@@ -14,16 +14,19 @@
     </jsp:include>
 </head>
 <body>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <div class="col l12">
+<div class="card horizontal">
+    <div class="card-image">
+        <img src="${user.photo}" alt="profile photo" style="width:300px;height:300px;border-radius: 50%">
+    </div>
     <div class="card blue-grey darken-1">
         <div class="card-content white-text">
             <span class="card-title"><h4>${ads.title}</h4></span>
-    <p>${ads.description}</p>
-            <div class="card-action">
-            </div>
+            <p>${ads.description}</p>
         </div>
     </div>
 </div>
-</div>
+<jsp:include page="/WEB-INF/partials/footer.jsp" />
 </body>
 </html>

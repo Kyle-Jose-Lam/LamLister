@@ -29,7 +29,7 @@
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
             <form method="post" action="/da">
-                <button type="submit" name="button" value="${ad.id}">View Ad</button>
+                <button class="btn #29b6f6 light-blue lighten-1" type="submit" name="button" value="${ad.id}">View Ad</button>
             </form>
 
 
@@ -64,17 +64,17 @@
 
             <div class="field">
                 <div class="control">
-                    <button class="button" type="button" id="picker">Pick file</button>
+                    <button class="btn #29b6f6 light-blue lighten-1" type="button" id="picker">Upload Profile Photo</button>
                     <input type="hidden" id="fileupload" name="file">
                 </div>
                 <div class="control" id="nameBox"></div>
                 <div class="control" id="urlBox"></div>
             </div>
-
-            <input type="submit" class="btn btn-primary btn-block">
+<br>
+            <input type="submit" class="btn #29b6f6 light-blue lighten-1">
         </form>
     </div>
-
+    <jsp:include page="/WEB-INF/partials/footer.jsp" />
     <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <%--    FileStack interface--%>
     <script>
