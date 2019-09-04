@@ -28,7 +28,6 @@
     </div>
     <div class="footer-copyright">
         <div class="container">
-<%--            <p>© 2019 Copyright</p>--%>
             <a class="grey-text text-lighten-4 right" href="#!">Contact Us</a>
         </div>
     </div>

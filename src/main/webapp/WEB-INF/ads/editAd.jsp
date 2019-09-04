@@ -20,7 +20,7 @@
             </div>
             <%--        <input value="${ad.id}" name="editId" type="hidden">--%>
             <input type="hidden" name="adId" value="${ad.id}">
-            <button value="${ad.id}" name="button" type="submit">Edit</button>
+            <button value="${ad.id}" name="button" type="submit" class="btn #29b6f6 light-blue lighten-1">Edit</button>
         </form>
     </div>
 

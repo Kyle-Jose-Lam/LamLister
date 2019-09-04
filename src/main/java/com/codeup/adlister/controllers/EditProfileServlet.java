@@ -40,6 +40,7 @@ public class EditProfileServlet  extends HttpServlet {
 
         DaoFactory.getUsersDao().updateProfile(updatedUser);
         user.setUsername(updatedUser.getUsername());
+        request.setAttribute("user", user);
         try {
             request.getRequestDispatcher("WEB-INF/profile.jsp").forward(request, response);
         } catch (ServletException e) {
