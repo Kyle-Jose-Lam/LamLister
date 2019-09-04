@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet(name = "controllers.UpdateAdServlet", urlPatterns = "/ads/updateAd")
 public class EditAdsServlet extends HttpServlet {
-        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
             String title = request.getParameter("editedTitle");
             String description = request.getParameter("editedDescription");
             Long id = Long.parseLong(request.getParameter("adId"));
@@ -24,10 +24,15 @@ public class EditAdsServlet extends HttpServlet {
             );
             DaoFactory.getAdsDao().updateAds(ad);
 //            user.setUsername(updatedUser.getUsername());
-        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
-    }
+            try {
+                request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+                response.sendRedirect("/error");
+            }
+        }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
@@ -39,7 +44,12 @@ public class EditAdsServlet extends HttpServlet {
         Ad ad = DaoFactory.getAdsDao().findAdById(adId);
         System.out.println(ad);
         request.setAttribute("ad", ad);
-        request.getRequestDispatcher("/WEB-INF/ads/editAd.jsp").forward(request, response);
+        try {
+            request.getRequestDispatcher("/WEB-INF/ads/editAd.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+            response.sendRedirect("/error");
+        }
     }
 }
 

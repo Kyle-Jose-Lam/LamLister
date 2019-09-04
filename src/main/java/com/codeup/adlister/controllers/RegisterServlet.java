@@ -13,10 +13,15 @@ import java.io.IOException;
 
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User userCache = (User) request.getSession().getAttribute("failed");
 
-        request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+        try {
+            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+            response.sendRedirect("/error");
+        }
 
     }
 
