@@ -13,10 +13,15 @@ import java.io.IOException;
 
 @WebServlet(name = "controllers.AdsIndexServlet", urlPatterns = "/ads")
 public class AdsIndexServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setAttribute("ads", DaoFactory.getAdsDao().all());
         request.setAttribute("cats", DaoFactory.getCategoriesDao().all());
-        request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
+        try {
+            request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+            response.sendRedirect("/error");
+        }
 
     }
 

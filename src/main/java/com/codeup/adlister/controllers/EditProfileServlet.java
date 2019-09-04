@@ -12,18 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 @WebServlet(name = "controllers.UpdateServlet", urlPatterns = "/updateProfile")
 public class EditProfileServlet  extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User) request.getSession().getAttribute("user");
         request.setAttribute("user", user);
-        request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request,response);
+        try {
+            request.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+            response.sendRedirect("/error");
+        }
 
     }
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = (User) req.getSession().getAttribute("user");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        User user = (User) request.getSession().getAttribute("user");
 
-        String username = req.getParameter("username");
-        String email = req.getParameter("email");
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
 //        String password = req.getParameter("password");
 //        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
@@ -35,6 +40,11 @@ public class EditProfileServlet  extends HttpServlet {
 
         DaoFactory.getUsersDao().updateProfile(updatedUser);
         user.setUsername(updatedUser.getUsername());
-        req.getRequestDispatcher("WEB-INF/profile.jsp").forward(req, resp);
+        try {
+            request.getRequestDispatcher("WEB-INF/profile.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+            response.sendRedirect("/error");
+        }
     }
 }

@@ -12,15 +12,20 @@ import java.io.IOException;
 
 @WebServlet(name = "controllers.DetailedAdServlet", urlPatterns = "/da")
 public class DetailedAdServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws  IOException {
         request.setAttribute("ads", DaoFactory.getAdsDao().showAd(1));
-        request.getRequestDispatcher("/WEB-INF/ads/DetailedAd.jsp").forward(request, response);
+        try {
+            request.getRequestDispatcher("/WEB-INF/ads/DetailedAd.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+            response.sendRedirect("/error");
+        }
     }
 
 
 
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         int adId = Integer.parseInt(request.getParameter("button"));
 
@@ -28,7 +33,12 @@ public class DetailedAdServlet extends HttpServlet {
         User user = DaoFactory.getUsersDao().findUserByAdId(adId);
         request.setAttribute("user", user);
 
-        request.getRequestDispatcher("/WEB-INF/ads/DetailedAd.jsp").forward(request, response);
+        try {
+            request.getRequestDispatcher("/WEB-INF/ads/DetailedAd.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+            response.sendRedirect("/error");
+        }
 
     }
 }
