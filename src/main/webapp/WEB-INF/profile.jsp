@@ -13,6 +13,16 @@
     <div class="container">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
         <p class="updateBtn"><a href="/updateProfile">Update Information</a></p>
+        <div>
+            <img src="${user.photo}" alt="profile photo" style="width:300px;height:300px;border-radius: 50%">
+            <p>Name: ${user.full_name}</p>
+            <p>Email: ${user.email}</p>
+            <p>Address: ${user.address}</p>
+        </div>
+<%--        <form method="post" action="/updateProfile">--%>
+<%--            <button type="submit" name="button3" value="${sessionScope.user.id}">Edit Profile</button>--%>
+<%--        </form>--%>
+
     </div>
 <div class="container">
     <c:forEach var="ad" items="${myads}">

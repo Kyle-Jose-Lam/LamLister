@@ -7,6 +7,7 @@
     </jsp:include>
     <title></title></head>
 <body>
+
 <div class="container">
     <div class="card-body">
         <h5 class="card-title text-center">Title: ${ad.title }</h5>

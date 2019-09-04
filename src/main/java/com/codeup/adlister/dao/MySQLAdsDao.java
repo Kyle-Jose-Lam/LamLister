@@ -151,6 +151,7 @@ public class MySQLAdsDao implements Ads {
             rs.next();
             return extractAd(rs);
         }catch (SQLException e){
+
             throw new RuntimeException("Not able to find ad, e");
         }
     }
@@ -170,7 +171,7 @@ public class MySQLAdsDao implements Ads {
         }
 
     }
-    }
+}
 
 
 
