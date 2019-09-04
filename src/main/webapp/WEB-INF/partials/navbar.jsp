@@ -2,7 +2,7 @@
 
 <nav>
     <div class="#29b6f6 light-blue lighten-1 nav-wrapper">
-        <a class="navbar-brand" href="/"><span style="padding-left:15px">BlacList</span></a>
+        <a class="navbar-brand" href="/"><span style="padding-left:15px;font-size:36px;font-weight: bold">BlacList</span></a>
         <ul class="right hide-on-med-and-down">
             <li><a href="/ads">View Ads</a></li>
             <c:if test ="${sessionScope.user == null}">
