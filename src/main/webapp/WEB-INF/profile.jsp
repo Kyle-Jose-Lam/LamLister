@@ -15,7 +15,7 @@
             <h1>Welcome, ${sessionScope.user.username}!</h1>
             <div class="card horizontal">
                 <div class="card-image">
-                    <img src="${user.photo}" alt="profile photo" style="width:300px;height:300px;border-radius: 50%">
+                    <img src="${user.photo}" alt="profile photo" style="width:200px;height:200px;">
                 </div>
                 <div class="card-stacked">
                     <div class="#0277bd light-blue darken-3 card-content">

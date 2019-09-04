@@ -38,13 +38,14 @@
             </div>
             <div class="field">
                 <div class="control">
-                    <button class="button" type="button" id="picker">Pick file</button>
+                    <button class="btn #29b6f6 light-blue lighten-1" type="button" id="picker">Upload Picture</button>
                     <input type="hidden" id="fileupload" name="file">
                 </div>
+                <br>
                 <div class="control" id="nameBox"></div>
                 <div class="control" id="urlBox"></div>
             </div>
-            <input type="submit" class="btn btn-block btn-primary">
+            <input type="submit" class="btn #29b6f6 light-blue lighten-1">
         </form>
     </div>
 

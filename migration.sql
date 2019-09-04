@@ -101,5 +101,5 @@ values (1,'Furniture'),
 #         ON DELETE CASCADE
 # );
 
-# UPDATE users SET photo = 'https://cdn.filestackcontent.com/qQ9XKFSQ0O6J0iRxPWpn'  where id = 1;
+UPDATE users SET photo = 'https://cdn.filestackcontent.com/wpJcGnLkRmCdOtYMNjml'  where id = 3;
 
